@@ -1,12 +1,20 @@
-﻿using System;
+﻿using Business.Concreate;
+using DataAccess.Concreate.InMemory;
+using System;
 
 namespace ConsoleUI
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //inmemory çalışacağım demek
+            ProductManager productManager = new ProductManager(new InMemoryProductDal());
+            foreach (var product in productManager.GetAll())
+            {
+                Console.WriteLine(product.ProductName);
+            }
+
         }
     }
 }
