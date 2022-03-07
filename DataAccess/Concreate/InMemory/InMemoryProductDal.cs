@@ -3,6 +3,7 @@ using Entities.Concreate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace DataAccess.Concreate.InMemory
@@ -37,8 +38,6 @@ namespace DataAccess.Concreate.InMemory
             return _products;
         }
 
-       
-
         public void Update(Product product)
         {   // gönderdiğim ürün idsinie sahip olan listedeki ürünü bul 
             Product productToUpdate = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
@@ -50,6 +49,16 @@ namespace DataAccess.Concreate.InMemory
         public List<Product> GetAllByCategory(int categoryId)
         {
             return _products.Where(p => p.CategoryId == categoryId).ToList();
+        }
+
+        public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
+        {
+            return _products;
+        }
+
+        public Product Get(Expression<Func<Product, bool>> filter)
+        {
+            throw new NotImplementedException();
         }
     }
 }
