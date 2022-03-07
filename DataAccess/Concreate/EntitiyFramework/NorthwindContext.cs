@@ -14,4 +14,4 @@ namespace DataAccess.Concreate.EntitiyFramework
         }
     }
 }
-//1:33:55
+//1:33:55 engin demiroğ https://youtu.be/ow-EHetuNAU?t=5630
