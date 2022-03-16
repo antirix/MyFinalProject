@@ -1,11 +1,12 @@
-﻿using Entities.Concreate;
+﻿using Core.DataAccess;
+using Entities.Concreate;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface ICategoryDal: IEntityRepository<Category>
+    public interface ICategoryDal : IEntityRepository<Category>
     {
         
 

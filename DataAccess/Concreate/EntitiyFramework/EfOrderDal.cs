@@ -5,8 +5,7 @@ using Entities.Concreate;
 
 namespace DataAccess.Concreate.EntitiyFramework
 {
-    public class EfCategoryDal : EfEntityRepositoryBase<Category, NorthwindContext>, ICategoryDal
+    public class EfOrderDal : EfEntityRepositoryBase <Order, NorthwindContext>, IOrderDal
     {
-       
     }
 }
