@@ -17,6 +17,11 @@ namespace Business.Concreate
             _productDal = productDal;
         }
 
+        public void Add(Product product)
+        {
+            _productDal.Add(product);
+        }
+
         public List<Product> GetAll()
         {
             return _productDal.GetAll();
