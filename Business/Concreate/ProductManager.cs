@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concreate;
 using Entities.DTOs;
@@ -12,34 +14,35 @@ namespace Business.Concreate
     {
         IProductDal _productDal;
 
-        public ProductManager(IProductDal productDal)
+        public IResult Add(Product product)
         {
-            _productDal = productDal;
+                _productDal.Add(product);
+                return new SuccessResult(Messages.ProductAdded);
         }
 
-        public void Add(Product product)
+        public IDataResult<List<Product>> GetAll()
         {
-            _productDal.Add(product);
+            return new DataResult(_productDal.GetAll());
         }
 
-        public List<Product> GetAll()
+        public IDataResult<List<Product>> GetAllByCategoryId(int id)
         {
-            return _productDal.GetAll();
+            throw new NotImplementedException();
         }
 
-        public List<Product> GetAllByCategoryId(int id)
+        public IDataResult<List<Product>> GetAllByUnitPrice(decimal min, decimal max)
         {
-            return _productDal.GetAll(p=> p.CategoryId==id);
+            throw new NotImplementedException();
         }
 
-        public List<Product> GetAllByUnitPrice(decimal min, decimal max)
+        public IDataResult<Product> GetById(int productId)
         {
-            return _productDal.GetAll(p => p.UnitPrice>=min && p.UnitPrice<=max);
+            throw new NotImplementedException();
         }
 
-        public List<ProductDetailDto> GetProductDetails()
+        public IDataResult<List<ProductDetailDto>> GetProductDetails()
         {
-           return _productDal.GetProductDetails();
+            throw new NotImplementedException();
         }
     }
 }
