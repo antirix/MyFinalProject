@@ -22,7 +22,11 @@ namespace Business.Concreate
 
         public IDataResult<List<Product>> GetAll()
         {
-            return new DataResult(_productDal.GetAll());
+            if (DateTime.Now.Hour==22)
+            {
+                return new ErrorDataResult();
+            }
+            return new DataResult<List<Product>>(_productDal.GetAll(),true,"Ürünler listelendi");
         }
 
         public IDataResult<List<Product>> GetAllByCategoryId(int id)
