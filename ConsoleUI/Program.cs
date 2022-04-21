@@ -19,19 +19,30 @@ namespace ConsoleUI
         private static void CategoryTest()
         {
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
-            foreach (var category in categoryManager.GetAll())
+            var result = categoryManager.GetAll();
+            if (result.Count != 0)
             {
-                Console.WriteLine(category.CategoryName);
+                foreach (var category in categoryManager.GetAll())
+                {
+                    Console.WriteLine(category.CategoryName);
+                }
             }
         }
-
         private static void ProductTest()
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
+            var result = productManager.GetProductDetails();
 
-            foreach (var product in productManager.GetProductDetails())
+            if (result.Success == true)
             {
-                Console.WriteLine(product.ProductName + "/" + product.CategoryName);
+                foreach (var product in result.Data)
+                {
+                    Console.WriteLine(product.ProductName + "/" + product.CategoryName);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
             }
         }
     }
