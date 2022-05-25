@@ -1,9 +1,12 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcers.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concreate;
 using Entities.DTOs;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,11 +20,15 @@ namespace Business.Concreate
         {
             _productDal = productDal;
         }
-
+        //https://www.youtube.com/watch?v=cSmUHlnHOXI&t=7074s 
         public IResult Add(Product product)
         {
-                _productDal.Add(product);
-                return new SuccessResult(Messages.ProductAdded);
+            //validation
+            ValidationTool.Validate(new ProductValidator(), product);
+
+            //business codes
+            _productDal.Add(product);
+            return new SuccessResult(Messages.ProductAdded);
         }
 
         public IDataResult<List<Product>> GetAll()
