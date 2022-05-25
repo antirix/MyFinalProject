@@ -37,8 +37,6 @@ namespace WebAPI2.Controllers
             return BadRequest(result.Message);
         }
 
-
-
         [HttpPost("add")]
         public IActionResult Add(Product product)
         {
