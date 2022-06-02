@@ -24,8 +24,8 @@ namespace Business.Concreate
 
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
-        {
-            //business codes
+        { c
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  //business codes
             _productDal.Add(product);
             return new SuccessResult(Messages.ProductAdded);
         }
