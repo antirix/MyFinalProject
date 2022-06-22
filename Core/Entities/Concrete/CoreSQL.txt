@@ -39,8 +39,8 @@ CREATE TABLE [dbo].[Users](
 	[FirstName] [nvarchar](50) NOT NULL,
 	[LastName] [nvarchar](50) NOT NULL,
 	[Email] [nvarchar](50) NOT NULL,
-	[PasswordHash] [binary](500) NOT NULL,
-	[PasswordSalt] [binary](500) NOT NULL,
+	[PasswordHash] [varbinary](500) NOT NULL,
+	[PasswordSalt] [varbinary](500) NOT NULL,
 	[Status] [bit] NOT NULL,
  CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
 (
