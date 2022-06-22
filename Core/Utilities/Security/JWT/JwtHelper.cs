@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using Microsoft.Extensions.DependencyInjection;
+
 
 namespace Core.Utilities.Security.JWT
 {
@@ -19,7 +21,7 @@ namespace Core.Utilities.Security.JWT
         public JwtHelper(IConfiguration configuration)
         {
             Configuration = configuration;
-            _tokenOptions = (TokenOptions?)Configuration.GetSection("TokenOptions");
+            _tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
         }
         public AccessToken CreateToken(User user, List<OperationClaim> operationClaims)
@@ -36,7 +38,6 @@ namespace Core.Utilities.Security.JWT
                 Token = token,
                 Expiration = _accessTokenExpiration
             };
-
         }
 
         public JwtSecurityToken CreateJwtSecurityToken(TokenOptions tokenOptions, User user,
