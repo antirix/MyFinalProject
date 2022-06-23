@@ -26,17 +26,15 @@ namespace Business.Concreate
             _productDal = productDal;
             _categoryService = categoryService;
         }
-
-        [ValidationAspect(typeof(ProductValidator))]
-        //Claim   3:16:00
         [SecuredOperation("product.add,admin")]
+        [ValidationAspect(typeof(ProductValidator))]
+        //Claim   1.10:00 kamp 15
         public IResult Add(Product product)
         {
 
             //business codes
 
             IResult result = BusinessRules.Run(ChechIfProductCountOfCategoryCorrect(product.CategoryId),
-                                               ChechIfProdutNameExists(product.ProductName),
                                                CheckIfCategoryLimitExceded());
 
             if (result != null)
