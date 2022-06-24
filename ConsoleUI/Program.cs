@@ -20,7 +20,7 @@ namespace ConsoleUI
         {
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
             var result = categoryManager.GetAll();
-            if (result.Count != 0)
+            if (result.Data.Count != 0)
             {
                 foreach (var category in categoryManager.GetAll().Data)
                 {

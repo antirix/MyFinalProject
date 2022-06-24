@@ -3,17 +3,15 @@ using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
-using Core.CrossCuttingConcers.Validation;
+using Core.Aspects.Caching;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concreate;
 using Entities.DTOs;
-using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Business.Concreate
 {
@@ -28,7 +26,7 @@ namespace Business.Concreate
         }
         [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(ProductValidator))]
-        //Claim   1.10:00 kamp 15
+        //Claim   2.48:00 kamp 15
         public IResult Add(Product product)
         {
 
@@ -45,6 +43,7 @@ namespace Business.Concreate
             return new SuccessResult(Messages.ProductAdded);
         }
 
+        [CacheAspect] // key, value
         public IDataResult<List<Product>> GetAll()
         {
             if (DateTime.Now.Hour == 25)
@@ -64,6 +63,7 @@ namespace Business.Concreate
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max));
         }
 
+        [CacheAspect]
         public IDataResult<Product> GetById(int productId)
         {
             return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId));
@@ -110,4 +110,5 @@ namespace Business.Concreate
         }
         
     }
+
 }

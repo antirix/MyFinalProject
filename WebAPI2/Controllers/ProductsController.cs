@@ -17,7 +17,7 @@ namespace WebAPI2.Controllers
         }
 
         [HttpGet("getall")]
-        public IActionResult GetAll() 
+        public IActionResult GetAll() //Dependency Chain
         {
             var result = _productService.GetAll();
             if (result.Success)
