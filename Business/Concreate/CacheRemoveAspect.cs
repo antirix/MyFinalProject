@@ -1,4 +1,10 @@
-﻿namespace Business.Concreate
+﻿using Castle.DynamicProxy;
+using Core.CrossCuttingConcers.Caching;
+using Core.Utilities.Interceptors;
+using Core.Utilities.IoC;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Business.Concreate
 {
     public class CacheRemoveAspect : MethodInterception
     {
