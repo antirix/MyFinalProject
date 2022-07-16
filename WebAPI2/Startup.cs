@@ -30,11 +30,12 @@ namespace WebAPI2
             //Autofac, Ninject, CastleWindsor, StructureMap, LightInject, DryInject
             //Postsharp
             services.AddControllers();
-
+            services.AddCors();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI2", Version = "v1" });
             });
+           
            
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
@@ -67,6 +68,7 @@ namespace WebAPI2
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI2 v1"));
             }
+            app.UseCors(builder =>builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
             app.UseHttpsRedirection();
 

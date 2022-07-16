@@ -2,6 +2,7 @@
 using Entities.Concreate;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace WebAPI2.Controllers
 {
@@ -19,10 +20,11 @@ namespace WebAPI2.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll() //Dependency Chain
         {
+            Thread.Sleep(1000);
             var result = _productService.GetAll();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest(result.Message);
         }
@@ -32,7 +34,7 @@ namespace WebAPI2.Controllers
             var result =_productService.GetById(id);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest(result.Message);
         }
@@ -46,6 +48,17 @@ namespace WebAPI2.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
+        }
+        //intentional programming
+        [HttpGet("getbycategory")]
+        public IActionResult GetAllByCategory(int categoryId)
+        {
+            var result = _productService.GetAllByCategoryId(categoryId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
         }
     }
 }            
